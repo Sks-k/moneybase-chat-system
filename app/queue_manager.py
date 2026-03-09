@@ -1,16 +1,19 @@
-import redis
+from collections import deque
 
-r = redis.Redis(host="redis", port=6379, decode_responses=True)
+chat_queue = deque()
 
 SESSION_STORE = {}
 
-QUEUE_NAME = "chat_queue"
-
 def enqueue_chat(session_id):
-    r.rpush(QUEUE_NAME, session_id)
+    chat_queue.append(session_id)
 
 def dequeue_chat():
-    return r.lpop(QUEUE_NAME)
+
+    if chat_queue:
+        return chat_queue.popleft()
+
+    return None
+
 
 def queue_length():
-    return r.llen(QUEUE_NAME)
+    return len(chat_queue)
