@@ -24,3 +24,14 @@ docker-compose up --build
 API Docs
 
 http://localhost:8000/docs
+
+
+
+---
+
+### Option 2 — Run Locally (Without Docker)
+# I used option 2
+To simplify local testing without Redis, the queue can run using an in-memory implementation.
+
+Install dependencies:
+pip install -r requirements.txt
