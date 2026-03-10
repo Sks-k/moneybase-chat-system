@@ -28,6 +28,14 @@ The system processes chat requests through a queue and assigns them to agents de
 
 ---
 
+## Queue Implementation
+
+The system is designed to use Redis for distributed queue processing.
+
+For easier local testing without Docker, an in-memory queue implementation is used as a fallback.
+
+In production environments, Redis should be used to support distributed workers and horizontal scaling.
+
 ## Agent Capacity
 
 Each agent can handle up to **10 concurrent chats**, multiplied by their efficiency level.
